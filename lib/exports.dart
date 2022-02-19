@@ -3,6 +3,7 @@
 // pub
 export 'package:get/get.dart';
 export 'package:flutter_svg/svg.dart';
+export 'package:responsive_builder/responsive_builder.dart';
 
 // local
 export 'package:bolt_food/home.dart';
