@@ -44,7 +44,12 @@ class _SignUpCardState extends State<SignUpCard> {
                           borderRadius: BorderRadius.circular(16.0),
                         ),
                         Padding(
-                          padding: const EdgeInsets.fromLTRB(24, 24, 94, 26),
+                          padding: EdgeInsets.fromLTRB(
+                            24,
+                            24,
+                            isDesktop ? 44 : 94,
+                            26,
+                          ),
                           child: Text(
                             widget.signUpModel.label,
                             style: TextStyle(
@@ -67,7 +72,11 @@ class _SignUpCardState extends State<SignUpCard> {
                   ),
                   Positioned(
                     bottom: -28,
-                    right: isMobile ? 66 : 16,
+                    right: isMobile
+                        ? 66
+                        : isDesktop
+                            ? 16
+                            : 76,
                     child: Container(
                       width: isDesktop ? 60.0 : 56.0,
                       height: isDesktop ? 60.0 : 56.0,
