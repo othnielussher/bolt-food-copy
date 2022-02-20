@@ -91,6 +91,7 @@ class HeroSection extends StatelessWidget {
                           ),
                           InkWell(
                             onTap: () {},
+                            hoverColor: Colors.transparent,
                             child: Container(
                               height: 56,
                               width: isMobile ? null : 250,
