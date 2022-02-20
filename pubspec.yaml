@@ -40,6 +40,8 @@ flutter:
     - assets/images/
 
   fonts:
-    - family: Euclid Circular B Regular
+    - family: Euclid Circular B
       fonts:
         - asset: assets/fonts/Euclid Circular B Regular.ttf
+        - asset: assets/fonts/Euclid Circular B Bold.ttf
+          weight: 900
