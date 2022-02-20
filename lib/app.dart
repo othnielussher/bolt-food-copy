@@ -1,4 +1,4 @@
-import 'package:bolt_food/exports.dart';
+import 'package:bolt_food/shared/exports.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
@@ -7,12 +7,12 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Bolt Food Clone',
+      title: 'Bolt Food by Magnus',
       home: const Home(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        primaryColor: Colors.white,
         fontFamily: Fonts.euclidCircularB,
-        primaryColor: Palette.primary,
         scaffoldBackgroundColor: Colors.white,
       ),
     );
