@@ -1,5 +1,8 @@
-import 'package:bolt_food/exports.dart';
+import 'package:bolt_food/shared/exports.dart';
 import 'package:flutter/material.dart';
+// ignore: avoid_web_libraries_in_flutter
+import 'dart:html' as html;
+import 'package:flutter/foundation.dart';
 
 class Footer extends StatelessWidget {
   const Footer({Key? key}) : super(key: key);
@@ -26,58 +29,82 @@ class Footer extends StatelessWidget {
               // bolt food logo
               Padding(
                 padding: EdgeInsets.only(bottom: isDesktop ? 44 : 28),
-                child: SvgPicture.asset(
-                  Images.boltFoodLogo,
-                  height: isMobile ? 32 : 44,
+                child: InkWell(
+                  onTap: () => html.window.location.reload(),
+                  child: SvgPicture.asset(
+                    Images.boltFoodLogo,
+                    height: isMobile ? 32 : 44,
+                  ),
                 ),
               ),
 
               isDesktop
                   ? const SizedBox.shrink()
-                  : Flex(
-                      direction: Axis.horizontal,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Expanded(
-                          flex: isTablet ? 0 : 1,
-                          child: SvgPicture.asset(
-                            Images.playStore,
-                            height: 44,
-                            width: 150,
-                          ),
-                        ),
-                        const SizedBox(width: 16, height: 16),
-                        Expanded(
-                          flex: isTablet ? 0 : 1,
+                  : defaultTargetPlatform == TargetPlatform.iOS
+                      ? InkWell(
+                          onTap: () => Utils.launchURL(Links.appStore),
                           child: SvgPicture.asset(
                             Images.appStore,
                             height: 44,
                             width: 150,
                           ),
-                        ),
-                        const SizedBox(width: 16, height: 16),
-                        Expanded(
-                          flex: isTablet ? 0 : 1,
-                          child: SvgPicture.asset(
-                            Images.huaweiStore,
-                            height: 44,
-                            width: 150,
-                          ),
-                        ),
-                        const SizedBox(width: 16, height: 16),
-                      ],
-                    ),
+                        )
+                      : defaultTargetPlatform == TargetPlatform.android
+                          ? InkWell(
+                              onTap: () => Utils.launchURL(Links.playStore),
+                              child: SvgPicture.asset(
+                                Images.playStore,
+                                height: 44,
+                                width: 150,
+                              ),
+                            )
+                          : Flex(
+                              direction: Axis.horizontal,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Expanded(
+                                  flex: isTablet ? 0 : 1,
+                                  child: InkWell(
+                                    onTap: () =>
+                                        Utils.launchURL(Links.playStore),
+                                    child: SvgPicture.asset(
+                                      Images.playStore,
+                                      height: 44,
+                                      width: 150,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 16, height: 16),
+                                Expanded(
+                                  flex: isTablet ? 0 : 1,
+                                  child: InkWell(
+                                    onTap: () =>
+                                        Utils.launchURL(Links.appStore),
+                                    child: SvgPicture.asset(
+                                      Images.appStore,
+                                      height: 44,
+                                      width: 150,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 16, height: 16),
+                                Expanded(
+                                  flex: isTablet ? 0 : 1,
+                                  child: InkWell(
+                                    onTap: () =>
+                                        Utils.launchURL(Links.huaweiStore),
+                                    child: SvgPicture.asset(
+                                      Images.huaweiStore,
+                                      height: 44,
+                                      width: 150,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 16, height: 16),
+                              ],
+                            ),
 
-              isDesktop
-                  ? const SizedBox.shrink()
-                  : Padding(
-                      padding: const EdgeInsets.only(top: 40.0),
-                      child: Container(
-                        width: 208,
-                        height: 44,
-                        color: Palette.grey,
-                      ),
-                    ),
+              isDesktop ? const SizedBox.shrink() : const LanguagePicker(),
 
               SizedBox(
                 width: Get.width,
@@ -115,23 +142,32 @@ class Footer extends StatelessWidget {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text(
-                            'Courier Sign-up',
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.w700),
+                        children: [
+                          InkWell(
+                            onTap: () => Utils.launchURL(Links.couriers),
+                            child: const Text(
+                              'Courier Sign-up',
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.w700),
+                            ),
                           ),
-                          SizedBox(height: 20.0),
-                          Text(
-                            'Restaurant Sign-up',
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.w700),
+                          const SizedBox(height: 20.0),
+                          InkWell(
+                            onTap: () => Utils.launchURL(Links.partners),
+                            child: const Text(
+                              'Restaurant Sign-up',
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.w700),
+                            ),
                           ),
-                          SizedBox(height: 20.0),
-                          Text(
-                            'Careers',
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.w700),
+                          const SizedBox(height: 20.0),
+                          InkWell(
+                            onTap: () => Utils.launchURL(Links.careers),
+                            child: const Text(
+                              'Careers',
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.w700),
+                            ),
                           ),
                         ],
                       ),
@@ -141,16 +177,46 @@ class Footer extends StatelessWidget {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text('Support & FAQ', style: TextStyle(fontSize: 14)),
-                          SizedBox(height: 20.0),
-                          Text('Press', style: TextStyle(fontSize: 14)),
-                          SizedBox(height: 20.0),
-                          Text('Blog', style: TextStyle(fontSize: 14)),
-                          SizedBox(height: 20.0),
-                          Text('Contacts', style: TextStyle(fontSize: 14)),
-                          SizedBox(height: 20.0),
-                          Text('Legal', style: TextStyle(fontSize: 14)),
+                        children: [
+                          InkWell(
+                            onTap: () => Utils.launchURL(Links.support),
+                            child: const Text(
+                              'Support & FAQ',
+                              style: TextStyle(fontSize: 14),
+                            ),
+                          ),
+                          const SizedBox(height: 20.0),
+                          InkWell(
+                            onTap: () => Utils.launchURL(Links.press),
+                            child: const Text(
+                              'Press',
+                              style: TextStyle(fontSize: 14),
+                            ),
+                          ),
+                          const SizedBox(height: 20.0),
+                          InkWell(
+                            onTap: () => Utils.launchURL(Links.blog),
+                            child: const Text(
+                              'Blog',
+                              style: TextStyle(fontSize: 14),
+                            ),
+                          ),
+                          const SizedBox(height: 20.0),
+                          InkWell(
+                            onTap: () => Utils.launchURL(Links.contacts),
+                            child: const Text(
+                              'Contacts',
+                              style: TextStyle(fontSize: 14),
+                            ),
+                          ),
+                          const SizedBox(height: 20.0),
+                          InkWell(
+                            onTap: () => Utils.launchURL(Links.legal),
+                            child: const Text(
+                              'Legal',
+                              style: TextStyle(fontSize: 14),
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -163,25 +229,36 @@ class Footer extends StatelessWidget {
                           Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              SvgPicture.asset(Images.facebookLogo,
-                                  width: 40, height: 40),
+                              InkWell(
+                                onTap: () => Utils.launchURL(Links.facebook),
+                                child: SvgPicture.asset(
+                                  Images.facebookLogo,
+                                  width: 40,
+                                  height: 40,
+                                ),
+                              ),
                               const SizedBox(width: 16.0),
-                              SvgPicture.asset(Images.instagramLogo,
-                                  width: 40, height: 40),
+                              InkWell(
+                                onTap: () => Utils.launchURL(Links.instagram),
+                                child: SvgPicture.asset(
+                                  Images.instagramLogo,
+                                  width: 40,
+                                  height: 40,
+                                ),
+                              ),
                               const SizedBox(width: 16.0),
-                              SvgPicture.asset(Images.twitterLogo,
-                                  width: 40, height: 40),
+                              InkWell(
+                                onTap: () => Utils.launchURL(Links.twitter),
+                                child: SvgPicture.asset(
+                                  Images.twitterLogo,
+                                  width: 40,
+                                  height: 40,
+                                ),
+                              ),
                             ],
                           ),
                           isDesktop
-                              ? Padding(
-                                  padding: const EdgeInsets.only(top: 40.0),
-                                  child: Container(
-                                    width: 208,
-                                    height: 44,
-                                    color: Palette.grey,
-                                  ),
-                                )
+                              ? const LanguagePicker()
                               : const SizedBox.shrink(),
                         ],
                       ),
@@ -191,11 +268,14 @@ class Footer extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.only(top: isDesktop ? 40.0 : 32.0),
-                child: const Text(
-                  '© 2022 Bolt Technology OÜ',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Palette.grey,
+                child: const MouseRegion(
+                  cursor: SystemMouseCursors.text,
+                  child: Text(
+                    '© 2022 Bolt Technology OÜ',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Palette.grey,
+                    ),
                   ),
                 ),
               ),
