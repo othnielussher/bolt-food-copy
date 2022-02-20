@@ -51,8 +51,8 @@ class HeroSection extends StatelessWidget {
                                   style: TextStyle(
                                     fontSize: 34,
                                     color: Palette.black,
+                                    fontWeight: FontWeight.bold,
                                     fontFamily: Fonts.euclidCircularB,
-                                    fontWeight: FontWeight.w700,
                                   ),
                                 ),
                               ),
@@ -101,10 +101,9 @@ class HeroSection extends StatelessWidget {
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               height: 1.4,
+                              fontSize: 24,
                               color: Palette.black,
-                              fontSize: isDesktop ? 34 : 24,
                               fontFamily: Fonts.euclidCircularB,
-                              fontWeight: isDesktop ? FontWeight.w700 : null,
                             ),
                           ),
                           InkWell(
