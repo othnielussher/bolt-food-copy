@@ -1,5 +1,7 @@
-import 'package:bolt_food/exports.dart';
+import 'package:bolt_food/shared/exports.dart';
 import 'package:flutter/material.dart';
+// ignore: avoid_web_libraries_in_flutter
+import 'dart:html' as html;
 
 class HeroSection extends StatelessWidget {
   const HeroSection({Key? key}) : super(key: key);
@@ -18,7 +20,8 @@ class HeroSection extends StatelessWidget {
                 alignment: Alignment.topCenter,
                 children: [
                   Image.asset(
-                      isMobile ? Images.heroImageMobile : Images.heroImage),
+                    isMobile ? Images.heroImageMobile : Images.heroImage,
+                  ),
                   Column(
                     children: [
                       Container(
@@ -26,9 +29,12 @@ class HeroSection extends StatelessWidget {
                           top: isDesktop ? 40 : 24,
                           bottom: 16.0,
                         ),
-                        child: SvgPicture.asset(
-                          Images.boltFoodLogo,
-                          height: isDesktop ? 64 : 40,
+                        child: InkWell(
+                          onTap: () => html.window.location.reload(),
+                          child: SvgPicture.asset(
+                            Images.boltFoodLogo,
+                            height: isDesktop ? 64 : 40,
+                          ),
                         ),
                       ),
                       isDesktop
@@ -36,7 +42,9 @@ class HeroSection extends StatelessWidget {
                               constraints: const BoxConstraints(maxWidth: 720),
                               child: Container(
                                 margin: const EdgeInsets.only(
-                                    top: 22.0, bottom: 28.0),
+                                  top: 22.0,
+                                  bottom: 28.0,
+                                ),
                                 child: Text(
                                   'The restaurants and takeaways you love, delivered fast',
                                   textAlign: TextAlign.center,
@@ -57,12 +65,22 @@ class HeroSection extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 8.0),
-                                  child: SvgPicture.asset(Images.playStore),
+                                  child: InkWell(
+                                    onTap: () {
+                                      Utils.launchURL(Links.playStore);
+                                    },
+                                    child: SvgPicture.asset(Images.playStore),
+                                  ),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 8.0),
-                                  child: SvgPicture.asset(Images.appStore),
+                                  child: InkWell(
+                                    onTap: () {
+                                      Utils.launchURL(Links.appStore);
+                                    },
+                                    child: SvgPicture.asset(Images.appStore),
+                                  ),
                                 ),
                               ],
                             )
