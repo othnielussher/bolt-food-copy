@@ -1,4 +1,4 @@
-import 'package:bolt_food/exports.dart';
+import 'package:bolt_food/shared/exports.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
