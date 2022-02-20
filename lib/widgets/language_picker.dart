@@ -38,7 +38,7 @@ class LanguagePicker extends StatelessWidget {
                   child: Text(
                     'Language',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 18,
                       color: Color.fromRGBO(129, 131, 145, 1),
                     ),
                   ),
