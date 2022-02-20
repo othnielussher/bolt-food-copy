@@ -2,7 +2,7 @@ import 'package:bolt_food/shared/exports.dart';
 import 'package:flutter/material.dart';
 
 class Fonts {
-  static String euclidCircularB = 'Euclid Circular B Regular';
+  static String euclidCircularB = 'Euclid Circular B';
 }
 
 class Palette {
