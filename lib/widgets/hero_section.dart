@@ -51,7 +51,7 @@ class HeroSection extends StatelessWidget {
                                   style: TextStyle(
                                     fontSize: 34,
                                     color: Palette.black,
-                                    fontWeight: FontWeight.bold,
+                                    fontWeight: FontWeight.w700,
                                     fontFamily: Fonts.euclidCircularB,
                                   ),
                                 ),
